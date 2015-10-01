@@ -3,7 +3,7 @@ namespace modules\catalog;
 
 use WPKit\Module\AbstractFunctions;
 use WPKit\PostType\MetaBox;
-use WPKit\Taxonomy\TaxonomyField;
+use WPKit\Taxonomy\Taxonomy;
 
 class Functions extends AbstractFunctions
 {
@@ -36,8 +36,8 @@ class Functions extends AbstractFunctions
         return $variations;
     }
 
-    public static function get_brand_site_url( $product_id )
+    public static function get_brand_site_url( $term_id )
     {
-        return TaxonomyField::get( $product_id, 'site' );
+        return Taxonomy::get_custom_field_value( $term_id, 'site' );
     }
 }

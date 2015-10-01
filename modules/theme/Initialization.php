@@ -4,6 +4,7 @@ namespace modules\theme;
 use WPKit\AdminPage\OptionPage;
 use WPKit\Module\AbstractThemeInitialization;
 use WPKit\Options\OptionBox;
+use WPKit\Options\Option;
 
 class Initialization extends AbstractThemeInitialization
 {
@@ -117,7 +118,6 @@ class Initialization extends AbstractThemeInitialization
     public function admin_register_settings()
     {
         $option_box_design = new OptionBox( 'design', __( 'Design', 'wpk15' ) );
-        $option_box_design->add_field( 'logo', __( 'Logo', 'wpk15' ), 'Image' );
         $option_box_design->add_field( 'background', __( 'Background Color', 'wpk15' ), 'Color' );
 
         $option_box_social = new OptionBox( 'social', __( 'Social', 'wpk15' ) );

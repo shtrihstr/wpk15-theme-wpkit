@@ -3,7 +3,6 @@ namespace modules\catalog;
 
 use WPKit\Module\AbstractModuleInitialization;
 use WPKit\PostType\MetaBox;
-use WPKit\PostType\MetaBoxRelatedPosts;
 use WPKit\PostType\MetaBoxRepeatable;
 use WPKit\PostType\PostType;
 use WPKit\Table\Table;
@@ -57,20 +56,13 @@ class Initialization extends AbstractModuleInitialization
         $meta_box->add_post_type( $this->_post_type_product );
     }
 
-    public function admin_register_meta_box_related_products()
-    {
-        $meta_box = new MetaBoxRelatedPosts( 'related', __( 'Related Products', 'wpk15' ) );
-        $meta_box->set_related_post_types( [ 'product' ] );
-        $meta_box->add_post_type( $this->_post_type_product );
-    }
-
     public function register_taxonomy_brand()
     {
         $this->_taxonomy_brand = new Taxonomy( 'brand', __( 'Brand', 'wpk15' ) );
         $this->_taxonomy_brand->add_post_type( $this->_post_type_product );
 
         $this->_taxonomy_brand->add_custom_field( 'site', __( 'Web Site', 'wpk15' ), 'Url' );
-        $this->_taxonomy_brand->add_custom_field( 'Country', __( 'Country', 'wpk15' ), function() {
+        $this->_taxonomy_brand->add_custom_field( 'country', __( 'Country', 'wpk15' ), function() {
             $field = new Radio();
             $field->set_options( [
                 'Ukraine',
@@ -97,7 +89,7 @@ class Initialization extends AbstractModuleInitialization
             exit;
         } );
 
-        $admin_page = new TablePage( 'clients', __( 'Clients', 'wpk15' ), 'edit.php?post_type=product' );
+        $admin_page = new TablePage( 'clients', __( 'Clients', 'wpk15' ), 'users.php' );
         $admin_page->set_table( $table );
     }
 
